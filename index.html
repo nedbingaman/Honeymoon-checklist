@@ -96,7 +96,6 @@
     padding: 0 20px 100px;
   }
 
-  /* Header */
   .header {
     text-align: center;
     padding: 28px 0 24px;
@@ -125,25 +124,25 @@
     letter-spacing: 0.02em;
   }
 
-  /* Stats */
   .stats {
     display: flex;
     gap: 10px;
     justify-content: center;
     margin-top: 18px;
+    flex-wrap: wrap;
   }
   .stat-box {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 10px 20px;
+    padding: 10px 16px;
     text-align: center;
     box-shadow: var(--shadow-sm);
     min-width: 100px;
   }
   .stat-num {
     font-family: var(--font-display);
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
     color: var(--text-primary);
   }
@@ -156,7 +155,6 @@
     margin-top: 2px;
   }
 
-  /* Tabs */
   .tabs {
     display: flex;
     gap: 0;
@@ -169,7 +167,7 @@
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     color: var(--text-tertiary);
     border-bottom: 2px solid transparent;
@@ -182,7 +180,6 @@
     border-bottom-color: var(--accent);
   }
 
-  /* Section hints */
   .section-hint {
     font-size: 12px;
     color: var(--text-tertiary);
@@ -190,7 +187,6 @@
     font-style: italic;
   }
 
-  /* Group headers */
   .group-header {
     font-size: 10px;
     font-weight: 600;
@@ -200,18 +196,23 @@
   }
   .group-header.urgent { color: var(--pending-text); }
   .group-header.normal { color: var(--text-secondary); }
-  .group-header + .group-header { padding-top: 0; }
 
-  /* Checklist items */
   .check-row {
     display: flex;
     gap: 12px;
     padding: 10px 0;
-    cursor: pointer;
     transition: opacity 0.25s;
     border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
   }
   .check-row.done { opacity: 0.45; }
+  .check-left {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+    cursor: pointer;
+    min-width: 0;
+  }
   .checkbox {
     width: 22px; height: 22px;
     border-radius: 5px;
@@ -238,8 +239,11 @@
     margin-top: 2px;
     line-height: 1.4;
   }
+  .check-notes-area {
+    padding: 4px 0 8px 34px;
+    border-bottom: 1px solid var(--border-light);
+  }
 
-  /* Booking items */
   .item-row {
     border-bottom: 1px solid var(--border-light);
     padding: 12px 0;
@@ -268,7 +272,6 @@
     margin-top: 1px;
   }
 
-  /* Status badges */
   .badge {
     display: inline-block;
     font-size: 10px;
@@ -297,11 +300,48 @@
   }
   .expand-btn:hover { background: var(--bg-hover); }
 
+  .detail-panel {
+    padding: 8px 0 4px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .detail-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .detail-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    width: 44px;
+    flex-shrink: 0;
+  }
+  .detail-input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .detail-input:focus { border-color: var(--accent); }
+  .detail-input::placeholder { color: var(--text-tertiary); }
+  .detail-input.cost {
+    width: 100px;
+    flex: none;
+    text-align: right;
+  }
+
   .notes-input {
     width: 100%;
-    margin-top: 8px;
-    margin-left: 28px;
-    padding: 8px 10px;
+    padding: 7px 10px;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     font-size: 13px;
@@ -313,7 +353,6 @@
   .notes-input:focus { border-color: var(--accent); }
   .notes-input::placeholder { color: var(--text-tertiary); }
 
-  /* Ideas */
   .idea-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -365,7 +404,6 @@
   }
   .add-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Section dividers in bookings */
   .booking-section-header {
     font-size: 10px;
     font-weight: 600;
@@ -377,12 +415,79 @@
   }
   .booking-section-header:first-child { border-top: none; padding-top: 4px; }
 
-  /* Reset */
+  .budget-section { margin-bottom: 20px; }
+  .budget-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .budget-cat-name {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+  }
+  .budget-cat-total {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .budget-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .budget-item-label { font-size: 13px; color: var(--text-primary); flex:1; min-width:0; }
+  .budget-item-date { font-size: 11px; color: var(--text-tertiary); }
+  .budget-item-cost {
+    font-size: 14px; font-weight: 500; color: var(--text-primary);
+    margin-left: 12px; white-space: nowrap;
+  }
+  .budget-item-cost.empty { color: var(--text-tertiary); font-weight: 400; font-size: 12px; }
+
+  .budget-grand {
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .budget-grand-label {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--accent);
+  }
+  .budget-grand-total {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 500; color: var(--text-primary);
+  }
+
+  .daily-section { margin-top: 24px; }
+  .daily-header {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--text-secondary);
+    padding: 0 0 8px; border-bottom: 1px solid var(--border);
+  }
+  .daily-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--border-light);
+  }
+  .daily-date { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+  .daily-items { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+  .daily-cost { font-size: 14px; font-weight: 500; color: var(--text-primary); white-space: nowrap; }
+
   .reset-area {
-    margin-top: 32px;
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-light);
+    margin-top: 32px; text-align: center;
+    padding-top: 20px; border-top: 1px solid var(--border-light);
   }
   .reset-btn {
     background: none; border: none; cursor: pointer;
@@ -392,51 +497,28 @@
   }
   .reset-btn:hover { color: var(--text-secondary); }
 
-  /* Export button */
   .export-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--accent-light);
-    border: 1px solid var(--accent);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--accent);
-    padding: 8px 16px;
-    margin-bottom: 8px;
-    transition: all 0.2s;
-    letter-spacing: 0.02em;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-light); border: 1px solid var(--accent);
+    border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    padding: 8px 16px; margin-bottom: 8px;
+    transition: all 0.2s; letter-spacing: 0.02em;
   }
   .export-btn:hover { background: var(--accent); color: #fff; }
   .export-btn:active { transform: scale(0.97); }
 
-  /* Toast */
   .toast {
-    position: fixed;
-    bottom: 32px;
-    left: 50%;
+    position: fixed; bottom: 32px; left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: var(--text-primary);
-    color: var(--bg);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 24px;
-    box-shadow: var(--shadow-md);
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 100;
-    white-space: nowrap;
+    background: var(--text-primary); color: var(--bg);
+    font-size: 13px; font-weight: 500; padding: 10px 20px;
+    border-radius: 24px; box-shadow: var(--shadow-md);
+    opacity: 0; transition: all 0.3s ease;
+    pointer-events: none; z-index: 100; white-space: nowrap;
   }
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* Smooth entrance */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -460,64 +542,127 @@ const { useState, useEffect, useCallback } = React;
 const STORAGE_KEY = "honeymoon-tracker-v3";
 
 const initialBookings = [
-  { id:"b1", day:1, date:"Aug 16–17", label:"Flights KC → Rome", status:"pending", notes:"", category:"travel" },
-  { id:"b2", day:2, date:"Aug 18", label:"Vatican Museums early-entry tour", status:"pending", notes:"", category:"activity" },
-  { id:"b3", day:3, date:"Aug 19", label:"Papal Audience / Sposi Novelli tickets", status:"pending", notes:"", category:"activity" },
-  { id:"b4", day:4, date:"Aug 20", label:"Train Rome → Assisi (round trip)", status:"pending", notes:"", category:"travel" },
-  { id:"b5", day:5, date:"Aug 21", label:"Train Rome → Florence (Frecciarossa)", status:"pending", notes:"", category:"travel" },
-  { id:"b6", day:5, date:"Aug 21", label:"Galleria dell'Accademia timed entry", status:"pending", notes:"", category:"activity" },
-  { id:"b7", day:6, date:"Aug 22", label:"Colosseum + Underground/Arena access", status:"pending", notes:"", category:"activity" },
-  { id:"b8", day:6, date:"Aug 22", label:"NightJet NJ294 — Schlafwagen Deluxe", status:"pending", notes:"", category:"travel" },
-  { id:"b9", day:8, date:"Aug 24", label:"Train Salzburg → Zell am See", status:"pending", notes:"", category:"travel" },
-  { id:"b10", day:11, date:"Aug 27", label:"Train Zell am See → Munich", status:"pending", notes:"", category:"travel" },
-  { id:"b11", day:13, date:"Aug 29", label:"Flights Munich → KC", status:"pending", notes:"", category:"travel" },
+  { id:"b1", day:1, date:"Aug 16-17", label:"Flights KC → Rome", status:"pending", notes:"", cost:"", category:"travel" },
+  { id:"b2", day:2, date:"Aug 18", label:"Vatican Museums early-entry tour", status:"pending", notes:"", cost:"", category:"activity" },
+  { id:"b3", day:3, date:"Aug 19", label:"Papal Audience / Sposi Novelli tickets", status:"pending", notes:"", cost:"", category:"activity" },
+  { id:"b4", day:4, date:"Aug 20", label:"Train Rome → Assisi (round trip)", status:"pending", notes:"", cost:"", category:"travel" },
+  { id:"b5", day:5, date:"Aug 21", label:"Train Rome → Florence (Frecciarossa)", status:"pending", notes:"", cost:"", category:"travel" },
+  { id:"b6", day:5, date:"Aug 21", label:"Galleria dell'Accademia timed entry", status:"pending", notes:"", cost:"", category:"activity" },
+  { id:"b7", day:6, date:"Aug 22", label:"Colosseum + Underground/Arena access", status:"pending", notes:"", cost:"", category:"activity" },
+  { id:"b8", day:6, date:"Aug 22", label:"NightJet NJ294 — Schlafwagen Deluxe", status:"pending", notes:"", cost:"", category:"travel" },
+  { id:"b9", day:8, date:"Aug 24", label:"Train Salzburg → Zell am See", status:"pending", notes:"", cost:"", category:"travel" },
+  { id:"b10", day:11, date:"Aug 27", label:"Train Zell am See → Munich", status:"pending", notes:"", cost:"", category:"travel" },
+  { id:"b11", day:13, date:"Aug 29", label:"Flights Munich → KC", status:"pending", notes:"", cost:"", category:"travel" },
 ];
 
 const initialLodging = [
-  { id:"l1", location:"Rome", nights:"5 nights (Aug 17–22)", status:"pending", notes:"", category:"lodging" },
-  { id:"l2", location:"Salzburg", nights:"1 night (Aug 23)", status:"pending", notes:"", category:"lodging" },
-  { id:"l3", location:"Zell am See", nights:"3 nights (Aug 24–26)", status:"pending", notes:"", category:"lodging" },
-  { id:"l4", location:"Munich", nights:"2 nights (Aug 27–28)", status:"pending", notes:"", category:"lodging" },
+  { id:"l1", location:"Rome", nights:"5 nights (Aug 17-22)", date:"Aug 17-22", day:1, status:"pending", notes:"", cost:"", category:"lodging" },
+  { id:"l2", location:"Salzburg", nights:"1 night (Aug 23)", date:"Aug 23", day:7, status:"pending", notes:"", cost:"", category:"lodging" },
+  { id:"l3", location:"Zell am See", nights:"3 nights (Aug 24-26)", date:"Aug 24-26", day:8, status:"pending", notes:"", cost:"", category:"lodging" },
+  { id:"l4", location:"Munich", nights:"2 nights (Aug 27-28)", date:"Aug 27-28", day:11, status:"pending", notes:"", cost:"", category:"lodging" },
 ];
 
 const initialDining = [
-  { id:"d1", day:2, date:"Aug 18", label:"Armando al Pantheon (splurge dinner)", status:"pending", notes:"", category:"dining" },
-  { id:"d2", day:3, date:"Aug 19", label:"Roscioli (celebration dinner)", status:"pending", notes:"", category:"dining" },
-  { id:"d3", day:6, date:"Aug 22", label:"Felice a Testaccio (farewell lunch)", status:"pending", notes:"", category:"dining" },
-  { id:"d4", day:7, date:"Aug 23", label:"Stiftskeller St. Peter, Salzburg", status:"pending", notes:"", category:"dining" },
-  { id:"d5", day:9, date:"Aug 25", label:"Grand Hotel Belvedere Restaurant", status:"pending", notes:"", category:"dining" },
+  { id:"d1", day:2, date:"Aug 18", label:"Armando al Pantheon (splurge dinner)", status:"pending", notes:"", cost:"", category:"dining" },
+  { id:"d2", day:3, date:"Aug 19", label:"Roscioli (celebration dinner)", status:"pending", notes:"", cost:"", category:"dining" },
+  { id:"d3", day:6, date:"Aug 22", label:"Felice a Testaccio (farewell lunch)", status:"pending", notes:"", cost:"", category:"dining" },
+  { id:"d4", day:7, date:"Aug 23", label:"Stiftskeller St. Peter, Salzburg", status:"pending", notes:"", cost:"", category:"dining" },
+  { id:"d5", day:9, date:"Aug 25", label:"Grand Hotel Belvedere Restaurant", status:"pending", notes:"", cost:"", category:"dining" },
 ];
 
 const initialPrep = [
-  { id:"p1", label:"Travel insurance purchased", status:"pending", notes:"", category:"prep" },
-  { id:"p2", label:"Passports valid (6+ months beyond travel)", status:"pending", notes:"", category:"prep" },
-  { id:"p3", label:"No-foreign-transaction-fee credit card", status:"pending", notes:"", category:"prep" },
-  { id:"p4", label:"Marriage certificate copy (Sposi Novelli)", status:"pending", notes:"", category:"prep" },
-  { id:"p5", label:"Apps downloaded (Trenitalia, ÖBB, DB Navigator, TheFork)", status:"pending", notes:"", category:"prep" },
-  { id:"p6", label:"Offline Google Maps (all cities)", status:"pending", notes:"", category:"prep" },
-  { id:"p7", label:"European plug adapters (×2)", status:"pending", notes:"", category:"prep" },
-  { id:"p8", label:"Notify bank of travel dates", status:"pending", notes:"", category:"prep" },
+  { id:"p1", label:"Travel insurance purchased", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p2", label:"Passports valid (6+ months beyond travel)", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p3", label:"No-foreign-transaction-fee credit card", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p4", label:"Marriage certificate copy (Sposi Novelli)", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p5", label:"Apps downloaded (Trenitalia, ÖBB, DB Navigator, TheFork)", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p6", label:"Offline Google Maps (all cities)", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p7", label:"European plug adapters (×2)", status:"pending", notes:"", cost:"", category:"prep" },
+  { id:"p8", label:"Notify bank of travel dates", status:"pending", notes:"", cost:"", category:"prep" },
 ];
 
 const initialChecklist = [
-  { id:"c1", priority:1, urgency:"Book NOW (April 2026)", item:"NightJet Schlafwagen Deluxe (NJ294, Aug 22)", reason:"Deluxe 2-berth sleepers sell out months ahead. Book at nightjet.com or oebb.at.", done:false },
-  { id:"c2", priority:2, urgency:"Book NOW (April 2026)", item:"Vatican Museums early-entry tour (Aug 18)", reason:"Small-group tours sell out 2–3 months ahead for August peak season.", done:false },
-  { id:"c3", priority:3, urgency:"Book NOW (April 2026)", item:"Colosseum Underground + Arena Floor (Aug 22)", reason:"Limited daily tickets. Book via coopculture.it or a guided tour company.", done:false },
-  { id:"c4", priority:4, urgency:"Book NOW (April 2026)", item:"Galleria dell'Accademia timed entry (Aug 21)", reason:"Pre-book at accademia.org to avoid 2–3 hour line.", done:false },
-  { id:"c5", priority:5, urgency:"Book by May 2026", item:"Frecciarossa trains Rome ↔ Florence (Aug 21)", reason:"Early booking: €20–30/person vs €50+ last minute.", done:false },
-  { id:"c6", priority:6, urgency:"Book by May 2026", item:"Rome lodging (5 nights, Aug 17–22)", reason:"August is peak season. Mid-range in Trastevere/Centro Storico books up.", done:false },
-  { id:"c7", priority:7, urgency:"Book by May 2026", item:"Zell am See lodging (3 nights, Aug 24–26)", reason:"Summer lake season is popular. Romantikhotel, Senses Violett, or Hotel Seehof.", done:false },
-  { id:"c8", priority:8, urgency:"Book by June 2026", item:"Salzburg lodging (1 night, Aug 23)", reason:"Good availability but best prices go first.", done:false },
-  { id:"c9", priority:9, urgency:"Book by June 2026", item:"Munich lodging (2 nights, Aug 27–28)", reason:"Check for pre-Oktoberfest price inflation.", done:false },
-  { id:"c10", priority:10, urgency:"Book by June 2026", item:"Email PNAC for Papal Audience + Sposi Novelli", reason:"Email visitorsoffice@pnac.org at least 2–3 weeks before. June is safe.", done:false },
-  { id:"c11", priority:11, urgency:"Book by July 2026", item:"Restaurant reservations (all)", reason:"Rome restaurants book 2–4 weeks ahead for August.", done:false },
-  { id:"c12", priority:12, urgency:"Book by July 2026", item:"Regional trains (Assisi, Salzburg–Zell, Zell–Munich)", reason:"Can buy day-of, but booking ahead saves 20–40%.", done:false },
-  { id:"c13", priority:13, urgency:"Before departure", item:"Travel insurance", reason:"Buy once major bookings are made. ~$100–200 for the trip.", done:false },
-  { id:"c14", priority:14, urgency:"Before departure", item:"Passport validity check", reason:"Must be valid 6+ months beyond Aug 29.", done:false },
-  { id:"c15", priority:15, urgency:"Before departure", item:"Prep tasks (apps, adapters, bank, maps, packing)", reason:"Do 1–2 weeks before departure.", done:false },
+  { id:"c1", priority:1, urgency:"Book NOW (April 2026)", item:"NightJet Schlafwagen Deluxe (NJ294, Aug 22)", reason:"Deluxe 2-berth sleepers sell out months ahead. Book at nightjet.com or oebb.at.", done:false, notes:"" },
+  { id:"c2", priority:2, urgency:"Book NOW (April 2026)", item:"Vatican Museums early-entry tour (Aug 18)", reason:"Small-group tours sell out 2–3 months ahead for August peak season.", done:false, notes:"" },
+  { id:"c3", priority:3, urgency:"Book NOW (April 2026)", item:"Colosseum Underground + Arena Floor (Aug 22)", reason:"Limited daily tickets. Book via coopculture.it or a guided tour company.", done:false, notes:"" },
+  { id:"c4", priority:4, urgency:"Book NOW (April 2026)", item:"Galleria dell'Accademia timed entry (Aug 21)", reason:"Pre-book at accademia.org to avoid 2–3 hour line.", done:false, notes:"" },
+  { id:"c5", priority:5, urgency:"Book by May 2026", item:"Frecciarossa trains Rome ↔ Florence (Aug 21)", reason:"Early booking: €20–30/person vs €50+ last minute.", done:false, notes:"" },
+  { id:"c6", priority:6, urgency:"Book by May 2026", item:"Rome lodging (5 nights, Aug 17–22)", reason:"August is peak season. Mid-range in Trastevere/Centro Storico books up.", done:false, notes:"" },
+  { id:"c7", priority:7, urgency:"Book by May 2026", item:"Zell am See lodging (3 nights, Aug 24–26)", reason:"Summer lake season is popular. Romantikhotel, Senses Violett, or Hotel Seehof.", done:false, notes:"" },
+  { id:"c8", priority:8, urgency:"Book by June 2026", item:"Salzburg lodging (1 night, Aug 23)", reason:"Good availability but best prices go first.", done:false, notes:"" },
+  { id:"c9", priority:9, urgency:"Book by June 2026", item:"Munich lodging (2 nights, Aug 27–28)", reason:"Check for pre-Oktoberfest price inflation.", done:false, notes:"" },
+  { id:"c10", priority:10, urgency:"Book by June 2026", item:"Email PNAC for Papal Audience + Sposi Novelli", reason:"Email visitorsoffice@pnac.org at least 2–3 weeks before. June is safe.", done:false, notes:"" },
+  { id:"c11", priority:11, urgency:"Book by July 2026", item:"Restaurant reservations (all)", reason:"Rome restaurants book 2–4 weeks ahead for August.", done:false, notes:"" },
+  { id:"c12", priority:12, urgency:"Book by July 2026", item:"Regional trains (Assisi, Salzburg–Zell, Zell–Munich)", reason:"Can buy day-of, but booking ahead saves 20–40%.", done:false, notes:"" },
+  { id:"c13", priority:13, urgency:"Before departure", item:"Travel insurance", reason:"Buy once major bookings are made. ~$100–200 for the trip.", done:false, notes:"" },
+  { id:"c14", priority:14, urgency:"Before departure", item:"Passport validity check", reason:"Must be valid 6+ months beyond Aug 29.", done:false, notes:"" },
+  { id:"c15", priority:15, urgency:"Before departure", item:"Prep tasks (apps, adapters, bank, maps, packing)", reason:"Do 1–2 weeks before departure.", done:false, notes:"" },
 ];
 
 const categoryIcons = { travel:"→", activity:"✦", lodging:"⌂", dining:"◆", prep:"✓" };
+const categoryLabels = { travel:"Travel & Transport", activity:"Activities", lodging:"Lodging", dining:"Dining", prep:"Pre-trip Prep" };
+
+function ensureFields(item) { return { cost:"", notes:"", ...item }; }
+function ensureListFields(list) { return list.map(ensureFields); }
+
+// ============================================================
+// BUG FIX: Badge and ItemRow are defined OUTSIDE of App.
+// When they were inside App, React created new component
+// references on every render, causing full unmount/remount
+// of the DOM tree — which destroyed the focused <input>.
+// By defining them outside, React sees the same component
+// reference across renders and only updates changed props,
+// preserving DOM focus.
+// ============================================================
+
+function Badge({ status, onClick }) {
+  return (
+    <span className={"badge badge-" + status} onClick={onClick}>{status}</span>
+  );
+}
+
+function ItemRow({ item, isOpen, onToggle, onCycleStatus, onUpdateField }) {
+  return (
+    <div className="item-row">
+      <div className="item-main">
+        <span className="item-icon">{categoryIcons[item.category]||"·"}</span>
+        <div className="item-content">
+          <div className="item-label">{item.label}</div>
+          {(item.date||item.nights) && <div className="item-date">{item.date||item.nights}</div>}
+        </div>
+        <Badge status={item.status} onClick={onCycleStatus} />
+        <button className="expand-btn" onClick={onToggle}>{isOpen ? "−" : "+"}</button>
+      </div>
+      {isOpen && (
+        <div className="detail-panel">
+          <div className="detail-row">
+            <span className="detail-label">Notes</span>
+            <input
+              className="detail-input"
+              type="text"
+              value={item.notes || ""}
+              onChange={e => onUpdateField(item.id, "notes", e.target.value)}
+              placeholder="Confirmation #, details…"
+            />
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Cost</span>
+            <input
+              className="detail-input cost"
+              type="text"
+              inputMode="decimal"
+              value={item.cost || ""}
+              onChange={e => onUpdateField(item.id, "cost", e.target.value)}
+              placeholder="$0"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================================
 
 function App() {
   const [bookings, setBookings] = useState(initialBookings);
@@ -530,50 +675,47 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [toast, setToast] = useState("");
 
-  const showToast = (msg) => {
-    setToast(msg);
-    setTimeout(() => setToast(""), 2200);
-  };
+  const [expandedItems, setExpandedItems] = useState({});
+  const toggleExpand = (id) => setExpandedItems(prev => ({ ...prev, [id]: !prev[id] }));
+
+  const [expandedChecklist, setExpandedChecklist] = useState({});
+  const toggleCheckExpand = (id) => setExpandedChecklist(prev => ({ ...prev, [id]: !prev[id] }));
+
+  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 2200); };
 
   const exportData = () => {
     const data = { bookings, lodging, dining, prep, checklistState, ideas, exportedAt: new Date().toISOString() };
     const json = JSON.stringify(data, null, 2);
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(json).then(() => showToast("Copied to clipboard!")).catch(() => fallbackExport(json));
-    } else {
-      fallbackExport(json);
-    }
+    } else { fallbackExport(json); }
   };
 
   const fallbackExport = (json) => {
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
-    a.download = "honeymoon-tracker-export.json";
-    a.click();
+    a.href = url; a.download = "honeymoon-tracker-export.json"; a.click();
     URL.revokeObjectURL(url);
     showToast("Downloaded as JSON file!");
   };
 
-  // Load from localStorage
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const data = JSON.parse(raw);
-        if (data.bookings) setBookings(data.bookings);
-        if (data.lodging) setLodging(data.lodging);
-        if (data.dining) setDining(data.dining);
-        if (data.prep) setPrep(data.prep);
-        if (data.checklistState) setChecklistState(data.checklistState);
+        if (data.bookings) setBookings(ensureListFields(data.bookings));
+        if (data.lodging) setLodging(ensureListFields(data.lodging));
+        if (data.dining) setDining(ensureListFields(data.dining));
+        if (data.prep) setPrep(ensureListFields(data.prep));
+        if (data.checklistState) setChecklistState(data.checklistState.map(c => ({ notes:"", ...c })));
         if (data.ideas) setIdeas(data.ideas);
       }
     } catch(e) {}
     setLoaded(true);
   }, []);
 
-  // Save to localStorage
   useEffect(() => {
     if (!loaded) return;
     try {
@@ -583,75 +725,65 @@ function App() {
 
   const cycleStatus = (list, setList, id) => {
     const order = ["pending","booked","idea"];
-    setList(list.map(item => {
-      if (item.id !== id) return item;
-      return { ...item, status: order[(order.indexOf(item.status)+1) % order.length] };
-    }));
+    setList(list.map(item => item.id !== id ? item : { ...item, status: order[(order.indexOf(item.status)+1) % order.length] }));
   };
 
-  const updateNotes = (list, setList, id, notes) => {
-    setList(list.map(item => item.id === id ? { ...item, notes } : item));
+  const updateField = (list, setList, id, field, value) => {
+    setList(list.map(item => item.id === id ? { ...item, [field]: value } : item));
   };
 
   const toggleChecklist = (id) => {
     setChecklistState(prev => prev.map(item => item.id === id ? { ...item, done: !item.done } : item));
   };
 
-  const addIdea = () => {
-    setIdeas(prev => [...prev, { id: "idea_"+Date.now(), day:"", label:"", notes:"", category:"idea" }]);
+  const updateChecklistNotes = (id, notes) => {
+    setChecklistState(prev => prev.map(item => item.id === id ? { ...item, notes } : item));
   };
 
-  const updateIdea = (id, field, value) => {
-    setIdeas(prev => prev.map(item => item.id === id ? { ...item, [field]: value } : item));
-  };
-
-  const removeIdea = (id) => {
-    setIdeas(prev => prev.filter(item => item.id !== id));
-  };
+  const addIdea = () => { setIdeas(prev => [...prev, { id:"idea_"+Date.now(), day:"", label:"", notes:"", category:"idea" }]); };
+  const updateIdea = (id, field, value) => { setIdeas(prev => prev.map(item => item.id === id ? { ...item, [field]: value } : item)); };
+  const removeIdea = (id) => { setIdeas(prev => prev.filter(item => item.id !== id)); };
 
   const resetAll = () => {
     if (confirm("Reset all tracking data? This cannot be undone.")) {
       setBookings(initialBookings); setLodging(initialLodging);
       setDining(initialDining); setPrep(initialPrep);
       setChecklistState(initialChecklist); setIdeas([]);
+      setExpandedItems({}); setExpandedChecklist({});
       try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
     }
   };
 
+  const parseCost = (val) => { const n = parseFloat(String(val).replace(/[^0-9.]/g,"")); return isNaN(n) ? 0 : n; };
+  const sumCosts = (list) => list.reduce((s, item) => s + parseCost(item.cost), 0);
+  const fmt = (n) => n > 0 ? "$" + n.toLocaleString("en-US", { minimumFractionDigits:0, maximumFractionDigits:0 }) : "";
+
+  const allItems = [...bookings, ...lodging.map(l => ({...l, label:l.location + " — " + l.nights})), ...dining, ...prep];
+  const grandTotal = sumCosts(allItems);
   const completedChecklist = checklistState.filter(c => c.done).length;
   const totalChecklist = checklistState.length;
-  const bookedCount = [...bookings,...lodging,...dining,...prep].filter(b => b.status==="booked").length;
-  const totalItems = bookings.length + lodging.length + dining.length + prep.length;
+  const bookedCount = allItems.filter(b => b.status === "booked").length;
+  const totalItems = allItems.length;
 
-  const Badge = ({ status, onClick }) => (
-    <span className={`badge badge-${status}`} onClick={onClick}>{status}</span>
-  );
+  const categoryOrder = ["travel","activity","lodging","dining","prep"];
+  const byCategory = {};
+  allItems.forEach(item => {
+    const cat = item.category || "other";
+    if (!byCategory[cat]) byCategory[cat] = [];
+    byCategory[cat].push(item);
+  });
 
-  const ItemRow = ({ item, list, setList }) => {
-    const [open, setOpen] = useState(false);
-    return (
-      <div className="item-row">
-        <div className="item-main">
-          <span className="item-icon">{categoryIcons[item.category]||"·"}</span>
-          <div className="item-content">
-            <div className="item-label">{item.label}</div>
-            {(item.date||item.nights) && <div className="item-date">{item.date||item.nights}</div>}
-          </div>
-          <Badge status={item.status} onClick={() => cycleStatus(list, setList, item.id)} />
-          <button className="expand-btn" onClick={() => setOpen(!open)}>{open?"−":"+"}</button>
-        </div>
-        {open && (
-          <input
-            className="notes-input"
-            type="text"
-            value={item.notes}
-            onChange={e => updateNotes(list, setList, item.id, e.target.value)}
-            placeholder="Confirmation #, price, details…"
-          />
-        )}
-      </div>
-    );
-  };
+  const dateMap = {};
+  allItems.forEach(item => {
+    const d = item.date || "";
+    if (!d || parseCost(item.cost) === 0) return;
+    if (!dateMap[d]) dateMap[d] = { date: d, items: [], total: 0, day: item.day || 99 };
+    dateMap[d].items.push(item);
+    dateMap[d].total += parseCost(item.cost);
+  });
+  const dailyBreakdown = Object.values(dateMap).sort((a,b) => a.day - b.day);
+
+  const tabs = ["checklist","bookings","budget","ideas"];
 
   return (
     <div className="app">
@@ -666,41 +798,47 @@ function App() {
           </div>
           <div className="stat-box">
             <div className="stat-num">{completedChecklist}/{totalChecklist}</div>
-            <div className="stat-label">Tasks done</div>
+            <div className="stat-label">Tasks</div>
           </div>
         </div>
       </header>
 
       <div className="tabs fade-in fade-in-d2">
-        {["checklist","bookings","ideas"].map(t => (
-          <button key={t} className={`tab ${activeTab===t?"active":""}`} onClick={() => setActiveTab(t)}>
+        {tabs.map(t => (
+          <button key={t} className={"tab" + (activeTab===t?" active":"")} onClick={() => setActiveTab(t)}>
             {t.charAt(0).toUpperCase()+t.slice(1)}
           </button>
         ))}
       </div>
 
       <div className="fade-in fade-in-d3">
+
         {activeTab==="checklist" && (
           <div>
-            <div className="section-hint">Ordered by deadline — tap to check off</div>
+            <div className="section-hint">Tap to check off · tap + for notes</div>
             {checklistState.map((item, i) => {
               const isNewGroup = i===0 || item.urgency !== checklistState[i-1].urgency;
+              const isOpen = !!expandedChecklist[item.id];
               return (
                 <React.Fragment key={item.id}>
                   {isNewGroup && (
-                    <div className={`group-header ${item.urgency.includes("NOW")?"urgent":"normal"}`}>
-                      {item.urgency}
+                    <div className={"group-header " + (item.urgency.includes("NOW")?"urgent":"normal")}>{item.urgency}</div>
+                  )}
+                  <div className={"check-row" + (item.done?" done":"")}>
+                    <div className="check-left" onClick={() => toggleChecklist(item.id)}>
+                      <div className={"checkbox" + (item.done?" checked":"")}>{item.done && "✓"}</div>
+                      <div style={{flex:1, minWidth:0}}>
+                        <div className={"check-text" + (item.done?" struck":"")}>{item.item}</div>
+                        <div className="check-reason">{item.reason}</div>
+                      </div>
+                    </div>
+                    <button className="expand-btn" onClick={() => toggleCheckExpand(item.id)}>{isOpen?"−":"+"}</button>
+                  </div>
+                  {isOpen && (
+                    <div className="check-notes-area">
+                      <input className="notes-input" type="text" value={item.notes||""} onChange={e => updateChecklistNotes(item.id, e.target.value)} placeholder="Add notes (links, confirmation #, reminders…)" />
                     </div>
                   )}
-                  <div className={`check-row ${item.done?"done":""}`} onClick={() => toggleChecklist(item.id)}>
-                    <div className={`checkbox ${item.done?"checked":""}`}>
-                      {item.done && "✓"}
-                    </div>
-                    <div style={{flex:1}}>
-                      <div className={`check-text ${item.done?"struck":""}`}>{item.item}</div>
-                      <div className="check-reason">{item.reason}</div>
-                    </div>
-                  </div>
                 </React.Fragment>
               );
             })}
@@ -709,19 +847,99 @@ function App() {
 
         {activeTab==="bookings" && (
           <div>
-            <div className="section-hint">Tap badge to cycle status · tap + for notes</div>
-
+            <div className="section-hint">Tap badge to cycle status · tap + for notes & cost</div>
             <div className="booking-section-header">Travel & Transport</div>
-            {bookings.map(item => <ItemRow key={item.id} item={item} list={bookings} setList={setBookings} />)}
-
+            {bookings.map(item => (
+              <ItemRow
+                key={item.id}
+                item={item}
+                isOpen={!!expandedItems[item.id]}
+                onToggle={() => toggleExpand(item.id)}
+                onCycleStatus={() => cycleStatus(bookings, setBookings, item.id)}
+                onUpdateField={(id, field, val) => updateField(bookings, setBookings, id, field, val)}
+              />
+            ))}
             <div className="booking-section-header">Lodging</div>
-            {lodging.map(item => <ItemRow key={item.id} item={{...item, label:`${item.location} — ${item.nights}`}} list={lodging} setList={setLodging} />)}
-
+            {lodging.map(item => (
+              <ItemRow
+                key={item.id}
+                item={{...item, label: item.location + " — " + item.nights}}
+                isOpen={!!expandedItems[item.id]}
+                onToggle={() => toggleExpand(item.id)}
+                onCycleStatus={() => cycleStatus(lodging, setLodging, item.id)}
+                onUpdateField={(id, field, val) => updateField(lodging, setLodging, id, field, val)}
+              />
+            ))}
             <div className="booking-section-header">Dining</div>
-            {dining.map(item => <ItemRow key={item.id} item={item} list={dining} setList={setDining} />)}
-
+            {dining.map(item => (
+              <ItemRow
+                key={item.id}
+                item={item}
+                isOpen={!!expandedItems[item.id]}
+                onToggle={() => toggleExpand(item.id)}
+                onCycleStatus={() => cycleStatus(dining, setDining, item.id)}
+                onUpdateField={(id, field, val) => updateField(dining, setDining, id, field, val)}
+              />
+            ))}
             <div className="booking-section-header">Pre-trip Prep</div>
-            {prep.map(item => <ItemRow key={item.id} item={item} list={prep} setList={setPrep} />)}
+            {prep.map(item => (
+              <ItemRow
+                key={item.id}
+                item={item}
+                isOpen={!!expandedItems[item.id]}
+                onToggle={() => toggleExpand(item.id)}
+                onCycleStatus={() => cycleStatus(prep, setPrep, item.id)}
+                onUpdateField={(id, field, val) => updateField(prep, setPrep, id, field, val)}
+              />
+            ))}
+          </div>
+        )}
+
+        {activeTab==="budget" && (
+          <div>
+            <div className="section-hint">Running totals from costs entered in Bookings</div>
+            {categoryOrder.map(cat => {
+              const items = byCategory[cat];
+              if (!items || items.length === 0) return null;
+              const catTotal = sumCosts(items);
+              return (
+                <div key={cat} className="budget-section">
+                  <div className="budget-category-header">
+                    <span className="budget-cat-name">{categoryLabels[cat]||cat}</span>
+                    <span className="budget-cat-total">{catTotal > 0 ? fmt(catTotal) : "—"}</span>
+                  </div>
+                  {items.map(item => (
+                    <div key={item.id} className="budget-item">
+                      <div style={{flex:1, minWidth:0}}>
+                        <div className="budget-item-label">{item.label}</div>
+                        {item.date && <div className="budget-item-date">{item.date}</div>}
+                      </div>
+                      <div className={"budget-item-cost" + (parseCost(item.cost)===0?" empty":"")}>
+                        {parseCost(item.cost) > 0 ? fmt(parseCost(item.cost)) : "—"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+            {dailyBreakdown.length > 0 && (
+              <div className="daily-section">
+                <div className="daily-header">Daily Breakdown</div>
+                {dailyBreakdown.map(day => (
+                  <div key={day.date} className="daily-row">
+                    <div style={{flex:1, minWidth:0}}>
+                      <div className="daily-date">{day.date}</div>
+                      <div className="daily-items">{day.items.map(i => i.label).join(", ")}</div>
+                    </div>
+                    <div className="daily-cost">{fmt(day.total)}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="budget-grand">
+              <span className="budget-grand-label">Grand Total</span>
+              <span className="budget-grand-total">{grandTotal > 0 ? fmt(grandTotal) : "$0"}</span>
+            </div>
           </div>
         )}
 
@@ -748,7 +966,7 @@ function App() {
         <br />
         <button className="reset-btn" onClick={resetAll}>Reset all data</button>
       </div>
-      <div className={`toast ${toast?"show":""}`}>{toast}</div>
+      <div className={"toast" + (toast?" show":"")}>{toast}</div>
     </div>
   );
 }
@@ -757,10 +975,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 
 <script>
-// Register service worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 </script>
 </body>
+</html>
 </html>
